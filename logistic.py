@@ -52,7 +52,7 @@ def cost(theta):
 	temp=temp/x1.shape[0]
 	return temp
 
-def cal_accuracy():
+def cal_accuracy(theta):
 	correct=0
 	for i in range(0,x3.shape[0]):
 		#print(hypothesis(theta,make_vector([1,x3[i],x4[i]])),y2[i])
@@ -70,15 +70,15 @@ def gradient_descent(theta):
 	for i in range(0,x1.shape[0]):
 		x=make_vector([1,x1[i],x2[i]])
 		h=hypothesis(theta,x)
-		temp_vector=x@(make_vector([h-y[i]]))
+		temp_vector=x*(h-y[i])
 		sum=sum+temp_vector
 	sum=sum/x1.shape[0]
 	#print(sum)
-	theta=theta-0.02*sum
+	theta=theta-(0.0000001*sum)
 	#print(theta)
 	return theta
 
-for i in range(0,500):
+for i in range(400):
 
 	theta=gradient_descent(theta)
 #print(data)
@@ -90,5 +90,5 @@ print(cost(theta))
 #plot_data()
 # print(make_vector([1,1,2,4])+make_vector([1,1,2,5]))
 
-#print(cal_accuracy()*100)
+# print(cal_accuracy(theta)*100)
 #print(hypothesis(make_vector([1,2,3]),make_vector([1,2,4])))
